@@ -19,12 +19,11 @@ from utils import generalUtil
 def main(args):
 
     # Gets options from arguments
-    help = False
-    option = None
+    help, option = False, None
 
     # TODO: Add options under in an elif
     if generalUtil.search_items_to_list(['-s','-S'], args):
-        option = singular_assign(option, 's')
+        option = singular_assign(target=option, input='s')
 
     if generalUtil.search_items_to_list(['-h','-H','-hlp','--help','--Help'], args):
         help = True
