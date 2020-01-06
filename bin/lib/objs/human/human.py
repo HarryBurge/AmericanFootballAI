@@ -32,3 +32,6 @@ class Human():
         self.head = head
 
         self.offBalance = False
+
+    def get_image(self):
+        return self.model_image

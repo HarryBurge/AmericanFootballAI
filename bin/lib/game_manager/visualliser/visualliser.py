@@ -9,7 +9,7 @@ __Date__ = '5/1/2020'
 # Imports
 import pygame
 from Box2D import *
-import os
+
 
 # Colours
 WHITE = (255, 255, 255)
@@ -18,7 +18,7 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 
 
-# visualliser
+# Visualliser
 class Visualliser:
     '''
     This class controls visuals for one game for each instance of Visualliser.
@@ -42,20 +42,22 @@ class Visualliser:
 
 
     def draw(self, objects, camera_poi):
-        # TODO: adjust the doc string for the object thats going to be passed
         '''
         Takes a bunch of objects in an array and then draws them depending on
         what they are. Key points: 10 pixel border around field,
         30 pixels = 1 yard.
 
         params:-
-            objects : [] :
+            objects : [{path=str, poi=[float, float], angle=float}, ...] :
             camera_poi : [int, int] :
 
         outputs:-
             pygame window
         '''
 
+        # Adjusts camera_poi to pixels
+        camera_poi[0] *= 30
+        camera_poi[1] *= 30
 
         # Stops camera going out of view of field
         if camera_poi[1] > 3600 - self.size[1]:
@@ -84,10 +86,19 @@ class Visualliser:
         pygame.draw.rect(self.screen,RED,
                             (10-camera_poi[0], 3313-camera_poi[1], 1600, 297))
 
-        # TODO: Draw objects
+        # Loop through and draw objects passed
+        for i in objects:
+            img = pygame.image.load(i["path"])
+            rotimg = pygame.transform.rotate(img, i["angle"]) # TODO: Needs to rotate from center
+            self.screen.blit(rotimg, (i["poi"][0]-camera_poi[0]+10, i["poi"][1]-camera_poi[1]+10))
 
+        # Update window with the new screen
         pygame.display.flip()
 
+
+# TODO: Need to adjust coords because of rotation not being from center
+def poiadjustmentsforcenterroatation(img):
+    print(img.get_rect().size)
 
 
 
