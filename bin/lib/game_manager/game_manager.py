@@ -87,15 +87,19 @@ class Game:
         '''
         temp = []
         for i in self.dynamicObjects:
+            originx = i["b2object"].position.x*30
+            originy = i["b2object"].position.y*30
             temp.append({"path":i["object"].get_image(),
-                        "poi":[i["b2object"].position.x*30, i["b2object"].position.y*30],
+                        "poi":generalUtil.origin_to_topleft([originx, originy], [0.6, 0.6], generalUtil.rad_to_degrees(i["b2object"].angle)),
                         "angle":generalUtil.rad_to_degrees(i["b2object"].angle)})
 
         for i in self.staticObjects:
             if i["object"] != None:
                 if i["object"].get_image():
+                    originx = i["b2object"].position.x*30
+                    originy = i["b2object"].position.y*30
                     temp.append({"path":i["object"].get_image(),
-                                "poi":[i["b2object"].position.x*30, i["b2object"].position.y*30],
+                                "poi":generalUtil.origin_to_topleft([originx, originy], [0.6, 2], generalUtil.rad_to_degrees(i["b2object"].angle)),
                                 "angle":generalUtil.rad_to_degrees(i["b2object"].angle)})
         return temp
 

@@ -20,11 +20,19 @@ def search_items_to_list(items, target_list):
 
 # Converts radians to degress
 def rad_to_degrees(rad):
-    return rad*(math.pi/180)
+    return math.degrees(rad)
 
 # Converts degress to radians
 def degrees_to_rad(deg):
-    return deg*(180/math.pi)
+    return math.radians(deg)
+
+# centerpoi to top left of rectangle with Angle
+# TODO: verify that 0.5
+def origin_to_topleft(origin, rect, angle):
+    x = origin[0] + rect[0]*math.sin(angle)*0.5
+    y = origin[1] + rect[1]*math.cos(angle)*0.5
+    return [x,y]
+
 
 # Class for denug lines
 class Line:

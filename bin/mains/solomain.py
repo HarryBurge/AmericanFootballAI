@@ -29,16 +29,18 @@ def main():
 
 
     # TODO: remove this - testing
+    # TODO: points are failing aswell think its due to angle
     #game.create_dynamic_object(example_player, (1.0,1.0), 0)
-    #game.create_dynamic_object(example_player, (3.0,1.0), 45)
-    game.create_static_object(poi=(0,10), object=generalUtil.Line(), rect=(10, 1), angle=0) #Width/x height/y
-    #game.create_static_object(poi=(1,10), object=generalUtil.Line(), rect=(10, 1), angle=45)
+    game.create_dynamic_object(example_player, (1.0,0.0), -90) # TODO: found issue with angle not getting drawn correct only takes starting angle
+    game.create_static_object(poi=(0,10), object=generalUtil.Line(), rect=(1, 0.6), angle=-45) #Width/x height/y # TODO: Rotates image in wrong direction to the actual image
+    game.create_static_object(poi=(2,10), object=generalUtil.Line(), rect=(1, 0.6), angle=45)
 
     # TODO: Remove the testign code
-    for i in range(0, 10000):
+    for i in range(0, 1000):
         game.step()
         temp = game.get_visual_objects()
         visuals.draw(temp, [0, 0]) # TODO: change camera to variable
+
 
 
 if __name__ == '__main__':
